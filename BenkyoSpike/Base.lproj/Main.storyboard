@@ -1,26 +1,199 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zhp-Ow-IU1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--BENKYO!-->
+        <scene sceneID="fGb-Zc-klT">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VhQ-Wy-0fU" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="oUi-X1-28T"/>
+                        <viewControllerLayoutGuide type="bottom" id="gy8-4r-VEE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="iKO-X7-P8V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGj-3P-L4L">
+                                <rect key="frame" x="136" y="72" width="103" height="53"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
+                                <state key="normal" title="Decks"/>
+                                <connections>
+                                    <segue destination="U5V-Tc-RwP" kind="show" id="ThQ-RW-svB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nGj-3P-L4L" firstAttribute="top" secondItem="oUi-X1-28T" secondAttribute="bottom" constant="8" id="VBh-j8-zRi"/>
+                            <constraint firstItem="nGj-3P-L4L" firstAttribute="centerX" secondItem="iKO-X7-P8V" secondAttribute="centerX" id="reG-rw-UgL"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="BENKYO!" id="rol-u7-BOe"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1CR-Ar-Gfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="701.60000000000002" y="98.50074962518741"/>
+        </scene>
+        <!--Decks-->
+        <scene sceneID="YNv-UB-zgt">
+            <objects>
+                <tableViewController id="U5V-Tc-RwP" customClass="DecksTableViewController" customModule="BenkyoSpike" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="m7B-83-ciC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeckCell" id="svy-Yn-Fiy" customClass="DeckTableViewCell" customModule="BenkyoSpike" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="svy-Yn-Fiy" id="eAM-zO-2GF">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeckName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9au-fX-NiS">
+                                            <rect key="frame" x="132.5" y="8.5" width="109" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9au-fX-NiS" firstAttribute="centerY" secondItem="eAM-zO-2GF" secondAttribute="centerY" id="SQy-yu-Usf"/>
+                                        <constraint firstItem="9au-fX-NiS" firstAttribute="centerX" secondItem="eAM-zO-2GF" secondAttribute="centerX" id="q6f-Yw-DsI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deckNameLabel" destination="9au-fX-NiS" id="N8J-PP-AUg"/>
+                                    <segue destination="kJW-UF-ZTA" kind="show" id="7DG-4x-QpD"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U5V-Tc-RwP" id="jXN-yd-6Wd"/>
+                            <outlet property="delegate" destination="U5V-Tc-RwP" id="LK8-8D-KNL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Decks" id="lTZ-xm-cho">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="CEx-Qd-tXr"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuH-JN-9zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472.8" y="98.50074962518741"/>
+        </scene>
+        <!--Cards-->
+        <scene sceneID="mRB-yQ-Yt1">
+            <objects>
+                <collectionViewController id="kJW-UF-ZTA" customClass="DeckCollectionViewController" customModule="BenkyoSpike" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Ng3-aH-AyN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewLayout key="collectionViewLayout" id="f0e-25-mOG" customClass="DeckCollectionViewLayout" customModule="BenkyoSpike" customModuleProvider="target"/>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="kJW-UF-ZTA" id="beE-ef-y68"/>
+                            <outlet property="delegate" destination="kJW-UF-ZTA" id="hKU-At-mOg"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Cards" id="rWF-sN-Vei"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v0M-Gx-7YF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2381.5999999999999" y="98.50074962518741"/>
+        </scene>
+        <!--Deck Collection View Controller-->
+        <scene sceneID="4zY-aY-y9d">
+            <objects>
+                <viewController id="Zjb-ae-Y78" customClass="DeckCollectionViewController" customModule="BenkyoSpike" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Plg-QM-kMM"/>
+                        <viewControllerLayoutGuide type="bottom" id="A7q-62-08W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fQ7-Gc-d5C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iZd-YN-JCw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wie-5u-tTv">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Z1I-P9-vtf" customClass="DeckCardCell" customModule="BenkyoSpike" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iZd-YN-JCw" firstAttribute="top" secondItem="fQ7-Gc-d5C" secondAttribute="top" id="BAW-2w-aUe"/>
+                            <constraint firstAttribute="bottom" secondItem="iZd-YN-JCw" secondAttribute="bottom" id="jKN-1A-ogO"/>
+                            <constraint firstAttribute="trailing" secondItem="iZd-YN-JCw" secondAttribute="trailing" id="jN6-Qq-1Fr"/>
+                            <constraint firstItem="iZd-YN-JCw" firstAttribute="leading" secondItem="fQ7-Gc-d5C" secondAttribute="leading" id="pgI-0a-9LB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rsu-8D-kSr"/>
+                    <connections>
+                        <outlet property="cardsCV" destination="iZd-YN-JCw" id="24g-3q-ypA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pwX-Tk-4xj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3709.5999999999999" y="63.418290854572717"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="naY-sg-K42">
+            <objects>
+                <navigationController id="vZt-ve-7QX" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a64-DO-cij">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VhQ-Wy-0fU" kind="relationship" relationship="rootViewController" id="Byv-fb-urs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHA-Fs-j5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-246" y="100"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aFX-Rr-3yf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zhp-Ow-IU1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wjp-Qz-26O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Zjb-ae-Y78" kind="relationship" relationship="rootViewController" id="Bpy-Xr-L8m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybD-TA-Yhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2770.4000000000001" y="63.418290854572717"/>
         </scene>
     </scenes>
 </document>
