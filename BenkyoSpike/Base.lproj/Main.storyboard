@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zhp-Ow-IU1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vZt-ve-7QX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="svy-Yn-Fiy" id="eAM-zO-2GF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeckName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9au-fX-NiS">
@@ -72,7 +72,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="deckNameLabel" destination="9au-fX-NiS" id="N8J-PP-AUg"/>
-                                    <segue destination="kJW-UF-ZTA" kind="show" id="7DG-4x-QpD"/>
+                                    <segue destination="Zjb-ae-Y78" kind="show" id="nJM-Ds-Uv5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -90,27 +90,6 @@
             <point key="canvasLocation" x="1472.8" y="98.50074962518741"/>
         </scene>
         <!--Cards-->
-        <scene sceneID="mRB-yQ-Yt1">
-            <objects>
-                <collectionViewController id="kJW-UF-ZTA" customClass="DeckCollectionViewController" customModule="BenkyoSpike" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Ng3-aH-AyN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="f0e-25-mOG" customClass="DeckCollectionViewLayout" customModule="BenkyoSpike" customModuleProvider="target"/>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="kJW-UF-ZTA" id="beE-ef-y68"/>
-                            <outlet property="delegate" destination="kJW-UF-ZTA" id="hKU-At-mOg"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Cards" id="rWF-sN-Vei"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v0M-Gx-7YF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2381.5999999999999" y="98.50074962518741"/>
-        </scene>
-        <!--Deck Collection View Controller-->
         <scene sceneID="4zY-aY-y9d">
             <objects>
                 <viewController id="Zjb-ae-Y78" customClass="DeckCollectionViewController" customModule="BenkyoSpike" customModuleProvider="target" sceneMemberID="viewController">
@@ -152,14 +131,14 @@
                             <constraint firstItem="iZd-YN-JCw" firstAttribute="leading" secondItem="fQ7-Gc-d5C" secondAttribute="leading" id="pgI-0a-9LB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rsu-8D-kSr"/>
+                    <navigationItem key="navigationItem" title="Cards" id="rsu-8D-kSr"/>
                     <connections>
                         <outlet property="cardsCV" destination="iZd-YN-JCw" id="24g-3q-ypA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwX-Tk-4xj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3709.5999999999999" y="63.418290854572717"/>
+            <point key="canvasLocation" x="2250" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="naY-sg-K42">
@@ -176,24 +155,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHA-Fs-j5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-246" y="100"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="aFX-Rr-3yf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zhp-Ow-IU1" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wjp-Qz-26O">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Zjb-ae-Y78" kind="relationship" relationship="rootViewController" id="Bpy-Xr-L8m"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ybD-TA-Yhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2770.4000000000001" y="63.418290854572717"/>
         </scene>
     </scenes>
 </document>

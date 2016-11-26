@@ -23,18 +23,12 @@ class DeckCardCell: UICollectionViewCell {
     
     var cardFront = DeckCardFrontView.Card()
     var cardBack = DeckCardBackView.Card()
-    var card:CardObect = CardObect(front: "front", back: "back") {
+    var card:CardObject = CardObject(front: "front", back: "back") {
         didSet {
-            print("card updated")
             cardFront.textLabel?.text = card.frontValue
             cardBack.textLabel?.text = card.backValue
-            
-            flipCard()
         }
     }
-    
-    
-    
     
     
     override func awakeFromNib() {
@@ -44,7 +38,7 @@ class DeckCardCell: UICollectionViewCell {
         cardBack.frame = cardrect
         cardFront.frame = cardrect
         addSubview(cardFront)
-        flipCard()
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(DeckCardCell.tapped))
         tap.numberOfTapsRequired = 1
@@ -56,12 +50,13 @@ class DeckCardCell: UICollectionViewCell {
         NSLog("\(DeckCardCell.identifier) :Tapped!")
         flipCard(animated: true)
     }
+    
     func flipCard(animated:Bool=false) {
-        let dur:TimeInterval = animated ? 1.1 : 0
+        let dur:TimeInterval = animated ? 0.5 : 0
         if card.flipped {
             UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
-            UIView.transition(from: cardFront, to:cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            UIView.transition(from: cardFront, to:cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
         }
         card.flipped = !card.flipped
     }

@@ -19,7 +19,7 @@ class DeckCollectionViewController: UIViewController {
     //#MARK: Properties
     
     var layout = DeckCollectionViewLayout()
-    var deck:[CardObect] = []
+    var deck:[CardObject] = []
     
     //#MARK: Overrides
     
@@ -33,7 +33,7 @@ class DeckCollectionViewController: UIViewController {
         
         var i = 0
         for c  in cards {
-           let card = CardObect(front: "front \(i)", back: c)
+           let card = CardObject(front: "front \(i)", back: c)
             deck.append(card)
             i = i+1
         }

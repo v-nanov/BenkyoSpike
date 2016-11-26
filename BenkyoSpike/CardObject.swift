@@ -9,7 +9,7 @@
 import Foundation
 
 
-class CardObect {
+class CardObject {
     let frontValue:String!
     let backValue:String!
     var flipped = false
