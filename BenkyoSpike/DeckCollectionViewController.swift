@@ -19,7 +19,6 @@ class DeckCollectionViewController: UIViewController {
     //#MARK: Properties
     
     var layout = DeckCollectionViewLayout()
-    var deck:[CardObject] = []
     
     //#MARK: Overrides
     
@@ -31,12 +30,6 @@ class DeckCollectionViewController: UIViewController {
         cardsCV!.dataSource = self
         cardsCV!.collectionViewLayout = layout
         
-        var i = 0
-        for c  in cards {
-           let card = CardObject(front: "front \(i)", back: c)
-            deck.append(card)
-            i = i+1
-        }
     }
     
     
@@ -53,14 +46,13 @@ extension DeckCollectionViewController:UICollectionViewDelegate {
 extension DeckCollectionViewController:UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return deck.count
+        return cards.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeckCardCell.identifier, for: indexPath as IndexPath) as! DeckCardCell
-        let card = deck[indexPath.row]
-        cell.card = card
-//        frontCell.cardName.text = cards[indexPath.item]
         
+        if cell.flipped { cell.flipCard() }
         return cell
     }
 }

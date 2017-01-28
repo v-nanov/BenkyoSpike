@@ -22,20 +22,16 @@ class DeckCardCell: UICollectionViewCell {
   
     
     var cardFront = DeckCardFrontView.Card()
-    var cardBack = DeckCardBackView.Card()
-    var card:CardObject = CardObject(front: "front", back: "back") {
-        didSet {
-            cardFront.textLabel?.text = card.frontValue
-            cardBack.textLabel?.text = card.backValue
-        }
-    }
+    var cardBack  = DeckCardBackView.Card()
+    var flipped   = false
+
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let cardrect = CGRect(x: 0, y: 0, width: DeckCollectionViewLayout.cardSize.width, height: DeckCollectionViewLayout.cardSize.height)
         
-        cardBack.frame = cardrect
+        cardBack.frame  = cardrect
         cardFront.frame = cardrect
         addSubview(cardFront)
         
@@ -53,12 +49,12 @@ class DeckCardCell: UICollectionViewCell {
     
     func flipCard(animated:Bool=false) {
         let dur:TimeInterval = animated ? 0.5 : 0
-        if card.flipped {
+        if flipped {
             UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
             UIView.transition(from: cardFront, to:cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
         }
-        card.flipped = !card.flipped
+        flipped = !flipped
     }
     
 }
