@@ -11,6 +11,8 @@ import UIKit
 class DeckCardFrontView: CardView {
     
   
+    @IBOutlet weak var frontText: UILabel!
+    
     static let identifier = "DeckCardFrontView"
     
     @IBOutlet var textLabel:UILabel?

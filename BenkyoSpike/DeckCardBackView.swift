@@ -10,6 +10,8 @@ import UIKit
 
 class DeckCardBackView: CardView {
     
+    @IBOutlet weak var backText: UILabel!
+    
     static let identifier = "DeckCardBackView"
     
     @IBOutlet var textLabel:UILabel?

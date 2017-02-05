@@ -25,12 +25,21 @@ class DeckCardCell: UICollectionViewCell {
     var cardBack  = DeckCardBackView.Card()
     var flipped   = false
 
+    enum ChangoSpellError: Error {
+        case hatMissingOrNotMagical
+        case noFamiliar
+        case familiarAlreadyAToad
+        case spellFailed(reason: String)
+        case spellNotKnownToWitch
+    }
+
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let cardrect = CGRect(x: 0, y: 0, width: DeckCollectionViewLayout.cardSize.width, height: DeckCollectionViewLayout.cardSize.height)
         
+                
         cardBack.frame  = cardrect
         cardFront.frame = cardrect
         addSubview(cardFront)
@@ -40,7 +49,21 @@ class DeckCardCell: UICollectionViewCell {
         tap.numberOfTapsRequired = 1
         contentView.addGestureRecognizer(tap)
         contentView.isUserInteractionEnabled = true
+        
+        
+        DatabaseThing().setupDB()
+        DatabaseThing().addTestData()
+        let db = DatabaseThing().theDB()
+        
+        
+        for card in try! db.prepare(DatabaseThing().cards) {
+            print("id: \(card[DatabaseThing().id]), email: \(card[DatabaseThing().frontText])")
+        }
+        
+
+     
     }
+    
     
     func tapped() {
         NSLog("\(DeckCardCell.identifier) :Tapped!")
