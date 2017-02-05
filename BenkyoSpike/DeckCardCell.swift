@@ -60,6 +60,11 @@ class DeckCardCell: UICollectionViewCell {
             print("id: \(card[DatabaseThing().id]), email: \(card[DatabaseThing().frontText])")
         }
         
+        if let card = try! db.pluck(DatabaseThing().cards) {
+            let text = card[DatabaseThing().frontText]
+            cardFront.frontText.text = text
+        }
+        
 
      
     }
