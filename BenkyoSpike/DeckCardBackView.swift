@@ -11,6 +11,7 @@ import UIKit
 class DeckCardBackView: CardView {
     
     @IBOutlet weak var backText: UILabel!
+    @IBOutlet weak var recordButton: UIButton!
     
     static let identifier = "DeckCardBackView"
     

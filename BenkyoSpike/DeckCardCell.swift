@@ -8,7 +8,11 @@
 
 import UIKit
 
-class DeckCardCell: UICollectionViewCell {
+import AVFoundation
+
+
+
+class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
     
     //#MARK: Statics
     static let identifier = "DeckCardCell"
@@ -24,15 +28,10 @@ class DeckCardCell: UICollectionViewCell {
     var cardFront = DeckCardFrontView.Card()
     var cardBack  = DeckCardBackView.Card()
     var flipped   = false
-
-    enum ChangoSpellError: Error {
-        case hatMissingOrNotMagical
-        case noFamiliar
-        case familiarAlreadyAToad
-        case spellFailed(reason: String)
-        case spellNotKnownToWitch
-    }
-
+    
+    var recordButton: UIButton!
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
     
     
     override func awakeFromNib() {
@@ -51,8 +50,8 @@ class DeckCardCell: UICollectionViewCell {
         contentView.isUserInteractionEnabled = true
         
         
-        DatabaseThing().setupDB()
-        DatabaseThing().addTestData()
+        //DatabaseThing().setupDB()
+        //DatabaseThing().addTestData()
         let db = DatabaseThing().theDB()
         
         
@@ -61,11 +60,30 @@ class DeckCardCell: UICollectionViewCell {
         }
         
         if let card = try! db.pluck(DatabaseThing().cards) {
-            let text = card[DatabaseThing().frontText]
-            cardFront.frontText.text = text
+            let fText = card[DatabaseThing().frontText]
+            let bText = card[DatabaseThing().backText]
+            cardFront.frontText.text = fText
+            cardBack.backText.text = bText
         }
         
 
+        recordingSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        self.cardBack.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
+                    } else {
+                        // failed to record!
+                    }
+                }
+            }
+        } catch {
+            // failed to record!
+        }
      
     }
     
@@ -73,6 +91,35 @@ class DeckCardCell: UICollectionViewCell {
     func tapped() {
         NSLog("\(DeckCardCell.identifier) :Tapped!")
         flipCard(animated: true)
+    }
+    
+    func recordTapped() {
+        if audioRecorder == nil {
+            startRecording()
+        } else {
+            finishRecording(success: true)
+        }
+    }
+    
+    func startRecording() {
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+            
+            recordButton.setTitle("Tap to Stop", for: .normal)
+        } catch {
+            finishRecording(success: false)
+        }
     }
     
     func flipCard(animated:Bool=false) {
@@ -83,6 +130,24 @@ class DeckCardCell: UICollectionViewCell {
             UIView.transition(from: cardFront, to:cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
         }
         flipped = !flipped
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func finishRecording(success: Bool) {
+        audioRecorder.stop()
+        audioRecorder = nil
+        
+        if success {
+            recordButton.setTitle("Tap to Re-record", for: .normal)
+        } else {
+            recordButton.setTitle("Tap to Record", for: .normal)
+            // recording failed :(
+        }
     }
     
 }
