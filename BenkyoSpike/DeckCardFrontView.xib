@@ -29,7 +29,6 @@
             </constraints>
             <connections>
                 <outlet property="frontText" destination="L0F-W3-kbO" id="qaN-n8-qBJ"/>
-                <outlet property="textLabel" destination="L0F-W3-kbO" id="w4K-sM-8y7"/>
             </connections>
             <point key="canvasLocation" x="127.5" y="-125.5"/>
         </view>
