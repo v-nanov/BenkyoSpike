@@ -15,7 +15,6 @@ class DeckCardBackView: CardView {
     
     static let identifier = "DeckCardBackView"
     
-    @IBOutlet var textLabel:UILabel?
     
     static func Card() -> DeckCardBackView {
         let card = Bundle.main.loadNibNamed(identifier, owner: self, options: nil)?.first as! DeckCardBackView

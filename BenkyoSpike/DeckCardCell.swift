@@ -69,22 +69,7 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
 
         recordingSession = AVAudioSession.sharedInstance()
         
-        do {
-            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.cardBack.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
-                    } else {
-                        // failed to record!
-                    }
-                }
-            }
-        } catch {
-            // failed to record!
-        }
-     
+        
     }
     
     
@@ -127,7 +112,25 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
         if flipped {
             UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
-            UIView.transition(from: cardFront, to:cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            self.recordButton = cardBack.recordButton
+            
+            do {
+                try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                try recordingSession.setActive(true)
+                recordingSession.requestRecordPermission() { [unowned self] allowed in
+                    DispatchQueue.main.async {
+                        if allowed {
+                            self.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
+                        } else {
+                            // failed to record!
+                        }
+                    }
+                }
+            } catch {
+                // failed to record!
+            }
+
         }
         flipped = !flipped
     }
