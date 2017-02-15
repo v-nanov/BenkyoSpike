@@ -27,7 +27,7 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
     
     var cardFront = DeckCardFrontView.Card()
     var cardBack  = DeckCardBackView.Card()
-    var flipped   = false
+    var flipped   = true
     
     var recordButton: UIButton!
     var recordingSession: AVAudioSession!
@@ -69,6 +69,9 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
 
         recordingSession = AVAudioSession.sharedInstance()
         
+        UIView.transition(from: cardFront, to: cardBack , duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+        
+        self.recordButton = cardBack.recordButton
         
     }
     
@@ -79,6 +82,7 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
     }
     
     func recordTapped() {
+        NSLog("Record Tapped")
         if audioRecorder == nil {
             startRecording()
         } else {
@@ -110,17 +114,18 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
     func flipCard(animated:Bool=false) {
         let dur:TimeInterval = animated ? 0.5 : 0
         if flipped {
-            UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+//            UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
-            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+//            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
             self.recordButton = cardBack.recordButton
-            
+           
             do {
                 try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
                 try recordingSession.setActive(true)
                 recordingSession.requestRecordPermission() { [unowned self] allowed in
                     DispatchQueue.main.async {
                         if allowed {
+                            NSLog("something")
                             self.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
                         } else {
                             // failed to record!
@@ -128,7 +133,7 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
                     }
                 }
             } catch {
-                // failed to record!
+                NSLog("Failed to Record")
             }
 
         }
