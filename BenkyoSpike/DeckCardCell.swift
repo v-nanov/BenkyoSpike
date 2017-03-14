@@ -12,7 +12,7 @@ import AVFoundation
 
 
 
-class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
+class DeckCardCell: UICollectionViewCell {
     
     //#MARK: Statics
     static let identifier = "DeckCardCell"
@@ -29,35 +29,32 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
     var cardBack  = DeckCardBackView.Card()
     var flipped   = true
     
-    var recordButton: UIButton!
-    var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let cardrect = CGRect(x: 0, y: 0, width: DeckCollectionViewLayout.cardSize.width, height: DeckCollectionViewLayout.cardSize.height)
         
-                
+        //self.frame = cardrect
         cardBack.frame  = cardrect
         cardFront.frame = cardrect
-        addSubview(cardFront)
+        
+        addSubview(cardBack)
+//        bringSubview(toFront: cardBack.recordButton)
+//        addSubview(cardBack.recordButton)
         
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(DeckCardCell.tapped))
-        tap.numberOfTapsRequired = 1
-        contentView.addGestureRecognizer(tap)
-        contentView.isUserInteractionEnabled = true
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(DeckCardCell.tapped))
+//        tap.numberOfTapsRequired = 1
+//        contentView.addGestureRecognizer(tap)
+//        contentView.isUserInteractionEnabled = true
         
         
         //DatabaseThing().setupDB()
         //DatabaseThing().addTestData()
         let db = DatabaseThing().theDB()
         
-        
-        for card in try! db.prepare(DatabaseThing().cards) {
-            print("id: \(card[DatabaseThing().id]), email: \(card[DatabaseThing().frontText])")
-        }
         
         if let card = try! db.pluck(DatabaseThing().cards) {
             let fText = card[DatabaseThing().frontText]
@@ -66,13 +63,7 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
             cardBack.backText.text = bText
         }
         
-
-        recordingSession = AVAudioSession.sharedInstance()
-        
-        UIView.transition(from: cardFront, to: cardBack , duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-        
-        self.recordButton = cardBack.recordButton
-        
+//        UIView.transition(from: cardFront, to: cardBack , duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
     }
     
     
@@ -81,35 +72,6 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
         flipCard(animated: true)
     }
     
-    func recordTapped() {
-        NSLog("Record Tapped")
-        if audioRecorder == nil {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
-    }
-    
-    func startRecording() {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-        
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-            
-            recordButton.setTitle("Tap to Stop", for: .normal)
-        } catch {
-            finishRecording(success: false)
-        }
-    }
     
     func flipCard(animated:Bool=false) {
         let dur:TimeInterval = animated ? 0.5 : 0
@@ -117,45 +79,9 @@ class DeckCardCell: UICollectionViewCell, AVAudioRecorderDelegate {
 //            UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
 //            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-            self.recordButton = cardBack.recordButton
-           
-            do {
-                try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-                try recordingSession.setActive(true)
-                recordingSession.requestRecordPermission() { [unowned self] allowed in
-                    DispatchQueue.main.async {
-                        if allowed {
-                            NSLog("something")
-                            self.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
-                        } else {
-                            // failed to record!
-                        }
-                    }
-                }
-            } catch {
-                NSLog("Failed to Record")
-            }
-
+            
         }
         flipped = !flipped
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
-    func finishRecording(success: Bool) {
-        audioRecorder.stop()
-        audioRecorder = nil
-        
-        if success {
-            recordButton.setTitle("Tap to Re-record", for: .normal)
-        } else {
-            recordButton.setTitle("Tap to Record", for: .normal)
-            // recording failed :(
-        }
     }
     
 }
