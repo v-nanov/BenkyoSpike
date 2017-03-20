@@ -50,9 +50,10 @@ class DeckCardCell: UICollectionViewCell {
 //        contentView.addGestureRecognizer(tap)
 //        contentView.isUserInteractionEnabled = true
         
-        
-        //DatabaseThing().setupDB()
-        //DatabaseThing().addTestData()
+     
+        // TODO: LAZY LOAD SETUP
+//        DatabaseThing().setupDB()
+//        DatabaseThing().addTestData()
         let db = DatabaseThing().theDB()
         
         

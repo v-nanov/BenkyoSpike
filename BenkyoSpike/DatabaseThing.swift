@@ -27,12 +27,12 @@ class DatabaseThing {
         
        let db     = try! Connection("\(path)/theDB.sqlite3")
         
-       // lazy load this
-       //try! db.run(cards.create { t in
-       //     t.column(id, primaryKey: .autoincrement)
-       //     t.column(frontText)
-       //     t.column(backText)
-       // })
+//        lazy load this
+       try! db.run(cards.create { t in
+            t.column(id, primaryKey: .autoincrement)
+            t.column(frontText)
+            t.column(backText)
+        })
     }
     
     func theDB() -> Connection {

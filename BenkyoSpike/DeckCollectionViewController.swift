@@ -36,6 +36,7 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         cardsCV!.register(DeckCardCell.nib, forCellWithReuseIdentifier: DeckCardCell.identifier)
         cardsCV!.delegate = self
         cardsCV!.dataSource = self
