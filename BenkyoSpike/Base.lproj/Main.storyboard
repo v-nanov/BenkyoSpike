@@ -124,25 +124,31 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGG-E3-H2B">
-                                <rect key="frame" x="141" y="599" width="93" height="48"/>
+                                <rect key="frame" x="16" y="599" width="119" height="48"/>
                                 <state key="normal" title="Record"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D19-A3-fz3">
+                                <rect key="frame" x="240" y="599" width="119" height="48"/>
+                                <state key="normal" title="Listen"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="A7q-62-08W" firstAttribute="top" secondItem="D19-A3-fz3" secondAttribute="bottom" constant="20" id="0ca-Pe-mYb"/>
                             <constraint firstItem="iZd-YN-JCw" firstAttribute="top" secondItem="fQ7-Gc-d5C" secondAttribute="top" id="1k3-u3-lrX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AGG-E3-H2B" secondAttribute="trailing" constant="125" id="Fy5-s5-hz9"/>
-                            <constraint firstItem="AGG-E3-H2B" firstAttribute="top" secondItem="iZd-YN-JCw" secondAttribute="bottom" constant="8" id="Sc5-5S-VvV"/>
-                            <constraint firstItem="AGG-E3-H2B" firstAttribute="top" secondItem="iZd-YN-JCw" secondAttribute="bottom" constant="8" id="TZB-is-wcq"/>
+                            <constraint firstItem="D19-A3-fz3" firstAttribute="trailing" secondItem="fQ7-Gc-d5C" secondAttribute="trailingMargin" id="3RS-7g-pCr"/>
+                            <constraint firstItem="AGG-E3-H2B" firstAttribute="leading" secondItem="fQ7-Gc-d5C" secondAttribute="leadingMargin" id="3po-w9-9oS"/>
+                            <constraint firstItem="D19-A3-fz3" firstAttribute="top" secondItem="iZd-YN-JCw" secondAttribute="bottom" constant="8" id="J2J-wO-tZr"/>
+                            <constraint firstItem="A7q-62-08W" firstAttribute="top" secondItem="AGG-E3-H2B" secondAttribute="bottom" constant="20" id="N8O-ma-VbZ"/>
                             <constraint firstAttribute="trailing" secondItem="iZd-YN-JCw" secondAttribute="trailing" id="ZvC-HM-k8F"/>
                             <constraint firstItem="iZd-YN-JCw" firstAttribute="leading" secondItem="fQ7-Gc-d5C" secondAttribute="leading" id="eil-VP-boD"/>
-                            <constraint firstItem="AGG-E3-H2B" firstAttribute="leading" secondItem="fQ7-Gc-d5C" secondAttribute="leadingMargin" constant="125" id="mFI-AG-YJ7"/>
-                            <constraint firstItem="A7q-62-08W" firstAttribute="top" secondItem="AGG-E3-H2B" secondAttribute="bottom" constant="20" id="nPN-3j-cCB"/>
+                            <constraint firstItem="AGG-E3-H2B" firstAttribute="top" secondItem="iZd-YN-JCw" secondAttribute="bottom" constant="8" id="t6l-qZ-hfc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cards" id="rsu-8D-kSr"/>
                     <connections>
                         <outlet property="cardsCV" destination="iZd-YN-JCw" id="24g-3q-ypA"/>
+                        <outlet property="listenButton" destination="D19-A3-fz3" id="Zpp-8z-J1M"/>
                         <outlet property="recordButton" destination="AGG-E3-H2B" id="XgJ-dZ-Wh4"/>
                     </connections>
                 </viewController>

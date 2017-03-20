@@ -18,6 +18,7 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     //#MARK: IB Outlets
     @IBOutlet var cardsCV:UICollectionView?
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var listenButton: UIButton!
     
     //#MARK: Properties
     
@@ -25,7 +26,9 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
+    var synth: AVSpeechSynthesizer!
     var recordFile: URL!
+    
 
     
     //#MARK: Overrides
@@ -38,8 +41,10 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         cardsCV!.dataSource = self
         cardsCV!.collectionViewLayout = layout
         
+        self.listenButton.addTarget(self, action: #selector(self.listenTapped), for: .touchUpInside)
         
         recordingSession = AVAudioSession.sharedInstance()
+        synth = AVSpeechSynthesizer()
         
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -122,6 +127,14 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         recordButton.setTitle("Record", for: .normal)
         recordButton.removeTarget(self, action: #selector(playRecording), for: .allEvents)
         recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
+    }
+    
+    func listenTapped() {
+        
+        let testUtterance = AVSpeechUtterance(string: "僕の海は猫になるだ")
+        testUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        testUtterance.rate = 0.3
+        synth.speak(testUtterance)
     }
 
 }
