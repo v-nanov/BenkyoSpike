@@ -24,6 +24,8 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     var layout = DeckCollectionViewLayout()
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
+    var recordFile: URL!
 
     
     //#MARK: Overrides
@@ -69,7 +71,7 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func startRecording() {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        let recordFile = getDocumentsDirectory().appendingPathComponent("recording.m4a")
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -79,11 +81,11 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         ]
         
         do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder = try AVAudioRecorder(url: recordFile, settings: settings)
             audioRecorder.delegate = self
             audioRecorder.record()
             
-            recordButton.setTitle("Tap to Stop", for: .normal)
+            recordButton.setTitle("Stop", for: .normal)
         } catch {
             finishRecording(success: false)
         }
@@ -97,14 +99,29 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     
     func finishRecording(success: Bool) {
         audioRecorder.stop()
-        audioRecorder = nil
         
         if success {
-            recordButton.setTitle("Tap to Re-record", for: .normal)
+            recordButton.setTitle("Play", for: .normal)
+            recordButton.removeTarget(self, action: #selector(recordTapped), for: .allEvents)
+            recordButton.addTarget(self, action: #selector(playRecording), for: .touchUpInside)
         } else {
-            recordButton.setTitle("Tap to Record", for: .normal)
-            // recording failed :(
+            
         }
+    }
+    
+    func playRecording() {
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOf: audioRecorder.url)
+            audioPlayer = sound
+            sound.play()
+        } catch {
+            NSLog("Couldn't play recording")
+        }
+        audioRecorder = nil
+        recordButton.setTitle("Record", for: .normal)
+        recordButton.removeTarget(self, action: #selector(playRecording), for: .allEvents)
+        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
     }
 
 }
