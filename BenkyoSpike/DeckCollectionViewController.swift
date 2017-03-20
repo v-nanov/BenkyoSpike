@@ -48,15 +48,14 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
                         self.recordButton.isUserInteractionEnabled = true
                         self.recordButton.isEnabled = true
                         self.recordButton.addTarget(self, action: #selector(self.recordTapped), for: .touchUpInside)
-                        NSLog("something")
                     } else {
                         // failed to record!
-                        NSLog("Failed to Record１")
+                        NSLog("Failed to Record!")
                     }
                 }
             }
         } catch {
-            NSLog("Failed to Record")
+            NSLog("Failed to Record!")
         }
     }
     
