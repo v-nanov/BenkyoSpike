@@ -50,6 +50,8 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
+            try recordingSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+ 
             recordingSession.requestRecordPermission() { [unowned self] allowed in
                 DispatchQueue.main.async {
                     if allowed {
@@ -62,8 +64,9 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
                     }
                 }
             }
-        } catch {
+        } catch let error as NSError {
             NSLog("Failed to Record!")
+            NSLog("audioSession error: \(error.localizedDescription)")
         }
     }
     
