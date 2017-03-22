@@ -40,15 +40,12 @@ class DeckCardCell: UICollectionViewCell {
         cardFront.frame = cardrect
         
         addSubview(cardBack)
-//        bringSubview(toFront: cardBack.recordButton)
-//        addSubview(cardBack.recordButton)
+
         
-        
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(DeckCardCell.tapped))
-//        tap.numberOfTapsRequired = 1
-//        contentView.addGestureRecognizer(tap)
-//        contentView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DeckCardCell.tapped))
+        tap.numberOfTapsRequired = 1
+        contentView.addGestureRecognizer(tap)
+        contentView.isUserInteractionEnabled = true
         
      
         // TODO: LAZY LOAD SETUP
@@ -64,7 +61,7 @@ class DeckCardCell: UICollectionViewCell {
             cardBack.backText.text = bText
         }
         
-//        UIView.transition(from: cardFront, to: cardBack , duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+        UIView.transition(from: cardFront, to: cardBack , duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
     }
     
     
@@ -77,9 +74,9 @@ class DeckCardCell: UICollectionViewCell {
     func flipCard(animated:Bool=false) {
         let dur:TimeInterval = animated ? 0.5 : 0
         if flipped {
-//            UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            UIView.transition(from: cardBack, to: cardFront, duration: dur, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         }else{
-//            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            UIView.transition(from: cardFront, to: cardBack , duration: dur, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
             
         }
         flipped = !flipped

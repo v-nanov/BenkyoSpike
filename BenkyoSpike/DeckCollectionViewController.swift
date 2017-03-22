@@ -158,7 +158,7 @@ extension DeckCollectionViewController:UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeckCardCell.identifier, for: indexPath as IndexPath) as! DeckCardCell
-        if cell.flipped { cell.flipCard() }
+        //if cell.flipped { cell.flipCard() }
         return cell
     }
 }
