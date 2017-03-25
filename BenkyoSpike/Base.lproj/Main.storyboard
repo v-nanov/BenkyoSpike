@@ -161,6 +161,9 @@
                                     <constraint firstAttribute="width" constant="216" id="lmK-Ux-CI6"/>
                                 </constraints>
                                 <state key="normal" title="History"/>
+                                <connections>
+                                    <segue destination="XZF-Ws-9ur" kind="show" id="QRR-bu-fjb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sbr-gh-hfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3007" y="99"/>
+            <point key="canvasLocation" x="3193" y="-306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="naY-sg-K42">
@@ -232,6 +235,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHA-Fs-j5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-246" y="100"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="NZV-Rk-dES">
+            <objects>
+                <viewController id="XZF-Ws-9ur" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="orB-Xs-dDC"/>
+                        <viewControllerLayoutGuide type="bottom" id="ccM-QR-IeJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yqg-Kg-Rgx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="History" id="nu0-Lu-CH5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wr2-Ot-KXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3193" y="414"/>
         </scene>
     </scenes>
 </document>
