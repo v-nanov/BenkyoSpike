@@ -19,6 +19,7 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet var cardsCV:UICollectionView?
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var quizButton: UIButton!
     
     //#MARK: Properties
     
@@ -43,6 +44,7 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         cardsCV!.collectionViewLayout = layout
         
         self.listenButton.addTarget(self, action: #selector(self.listenTapped), for: .touchUpInside)
+        self.quizButton.addTarget(self, action: #selector(self.startQuiz), for: .touchUpInside)
         
         recordingSession = AVAudioSession.sharedInstance()
         synth = AVSpeechSynthesizer()
@@ -140,6 +142,15 @@ class DeckCollectionViewController: UIViewController, AVAudioRecorderDelegate {
         testUtterance.rate = 0.3
         synth.speak(testUtterance)
     }
+    
+    func startQuiz() {
+//        cardsCV?.scrollToItem(at: IndexPath(row: 0, section: 0),
+//                                          at: .top,
+//                                          animated: true)
+//        cardsCV?.contentOffset.x = 0
+        cardsCV?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        
+    }
 
 }
 
@@ -159,6 +170,7 @@ extension DeckCollectionViewController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeckCardCell.identifier, for: indexPath as IndexPath) as! DeckCardCell
         //if cell.flipped { cell.flipCard() }
+        cell.cardFront.frontText.text = cards[indexPath.item]
         return cell
     }
 }
