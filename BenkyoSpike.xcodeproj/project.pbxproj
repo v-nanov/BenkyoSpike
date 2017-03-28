@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C27105A1E8A7DEB00A3B8E5 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2710591E8A7DEA00A3B8E5 /* TestController.swift */; };
 		5C9CE6B31D9545E00047492B /* DeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9CE6B21D9545E00047492B /* DeckTableViewCell.swift */; };
 		5C9CE6B51D9550180047492B /* DeckCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9CE6B41D9550180047492B /* DeckCollectionViewController.swift */; };
 		5C9CE6B71D9555D10047492B /* DeckCardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9CE6B61D9555D10047492B /* DeckCardFrontView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C2710591E8A7DEA00A3B8E5 /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		5C9CE6B21D9545E00047492B /* DeckTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckTableViewCell.swift; sourceTree = "<group>"; };
 		5C9CE6B41D9550180047492B /* DeckCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewController.swift; sourceTree = "<group>"; };
 		5C9CE6B61D9555D10047492B /* DeckCardFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCardFrontView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				5CE7B6DB1D950FB700AAD7BB /* MainViewController.swift */,
 				5CE7B6EB1D952A7600AAD7BB /* DecksTableViewController.swift */,
 				5C9CE6B41D9550180047492B /* DeckCollectionViewController.swift */,
+				5C2710591E8A7DEA00A3B8E5 /* TestController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				5C9CE6B31D9545E00047492B /* DeckTableViewCell.swift in Sources */,
 				5CE7B6DC1D950FB700AAD7BB /* MainViewController.swift in Sources */,
 				5CE7B6DA1D950FB700AAD7BB /* AppDelegate.swift in Sources */,
+				5C27105A1E8A7DEB00A3B8E5 /* TestController.swift in Sources */,
 				5CA2E95B1DE2125C00E2929D /* DeckCardCell.swift in Sources */,
 				5C9CE6B91D97691C0047492B /* DeckCollectionViewLayout.swift in Sources */,
 				5CF2BE7A1E3C3E2600B7029A /* DatabaseThing.swift in Sources */,
